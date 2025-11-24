@@ -111,6 +111,7 @@ class XClsMakeMarkdownX(BaseMake):
     # Default Windows install path (used if present and env var not set)
     DEFAULT_WKHTMLTOPDF_PATH: str = r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"
     HEADER_MAX_LEVEL: int = 6
+    WKHTMLTOPDF_EXTRA_ARGS: tuple[str, ...] = ("--enable-local-file-access",)
 
     def __init__(
         self,
@@ -145,6 +146,7 @@ class XClsMakeMarkdownX(BaseMake):
         else:
             resolved_path = wkhtmltopdf_path
         self.wkhtmltopdf_path: str | None = resolved_path
+        self._wkhtmltopdf_args: tuple[str, ...] = self.WKHTMLTOPDF_EXTRA_ARGS
 
     def add_header(self, text: str, level: int = 1) -> None:
         """Add a header with hierarchical numbering and TOC update."""
@@ -225,6 +227,7 @@ class XClsMakeMarkdownX(BaseMake):
             stem=pdf_path.stem,
             wkhtmltopdf_path=self.wkhtmltopdf_path,
             runner=self._runner,
+            extra_args=self._wkhtmltopdf_args,
             keep_html=False,
         )
         self._last_export_result = result
@@ -249,6 +252,7 @@ class XClsMakeMarkdownX(BaseMake):
                 stem=output_path.stem,
                 wkhtmltopdf_path=self.wkhtmltopdf_path,
                 runner=self._runner,
+                extra_args=self._wkhtmltopdf_args,
                 keep_html=False,
             )
             self._last_export_result = result
