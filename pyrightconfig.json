@@ -1,14 +1,13 @@
-﻿{
+{
     "include": ["."],
     "stubPath": "../x_make_common_x/shared_typings",
     "executionEnvironments": [
         {
             "root": ".",
-            "extraPaths": [
-                ".."
-            ]
+            "extraPaths": ["..", "../x_make_common_x"]
         }
     ],
-    "reportMissingModuleSource": "none"
+    "reportMissingModuleSource": "none",
+    "reportMissingImports": "none"
 }
 
