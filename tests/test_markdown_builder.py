@@ -10,8 +10,8 @@ from subprocess import CompletedProcess
 from typing import TYPE_CHECKING, NoReturn
 
 import pytest
-
 from x_make_common_x import exporters
+
 from x_make_markdown_x.x_cls_make_markdown_x import XClsMakeMarkdownX
 
 if TYPE_CHECKING:
